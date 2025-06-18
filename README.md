@@ -1,1 +1,1 @@
-# CRP
+L'interface de l'application à l'adresse :           s'éteint dès qu'elle n'est pas utilisée après 1h. Pour la rallumer, il suffit de cliquer sur le bouton "     ", et attendre quelques minutes pour qu'elle se rallume. 
