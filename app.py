@@ -238,5 +238,28 @@ if uploaded_files:
                 st.write(f"**Écart-type** : {crp_std:.3f}")
                 st.write(f"**CRP minimum** : {crp_min:.3f} à {crp_min_pos} % du cycle")
                 st.write(f"**CRP maximum** : {crp_max:.3f} à {crp_max_pos} % du cycle")
+--- INTERPRÉTATION ---
+                with st.expander("**🧠 Interprétation des résultats CRP**", expanded = False):
+                    st.markdown("""
+                Le **CRP (Continuous Relative Phase)** permet d’évaluer la **coordination dynamique** entre deux segments corporels (par exemple, une hanche et une épaule) pendant le cycle de marche. Il est calculé à partir de la **différence entre leurs angles de phase**.
+
+                #### **Comment interpréter les valeurs du CRP ?**
+                - **Valeurs proches de 0** → les deux segments sont **en phase** : ils bougent **de manière synchronisée**.
+                - **Valeurs proches de ±1** → les segments sont **en opposition de phase** : ils bougent **en décalage** (l’un est en avance ou en retard par rapport à l’autre).
+                - **Valeurs positives CRP > 0** : le **premier segment/marqueur** (sélectionné en premier dans l’appli) est **en avance**.
+                - **Valeurs négatives CRP < 0** : le **premier segment/marqueur** est **en retard**.
+                            
+                #### **Forme de la courbe CRP :**
+                - Une **oscillation régulière** → coordination **stable et cyclique**.
+                - Une courbe **très variable, plate ou inconstante** → coordination **instable, adaptative ou perturbée/atypique**.
+
+                #### ⚠️ **Attention à l’ordre des marqueurs !**
+                Le CRP dépend de l’ordre dans lequel les marqueurs sont sélectionnés :
+                - Si on compare la **hanche (1er)** à l’**épaule (2ème)**, un CRP positif = hanche en avance.
+                - Inverser l’ordre inverse également le **signe du CRP**.
+
+                Toujours interpréter les résultats **en gardant cela en tête** !
+                """)
+
         except Exception as e:
             st.error(f"Erreur pendant l'analyse : {e}")
