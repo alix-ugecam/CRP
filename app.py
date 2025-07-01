@@ -38,9 +38,18 @@ if uploaded_files:
     st.header("2. Sélection des marqueurs")
     st.write("Labels disponibles :", labels)
 
-    heel_marker = st.selectbox("Marqueur du talon (pour détection des cycles)", labels)
-    marker1 = st.selectbox("Marqueur d’intérêt 1 (ex. hanche)", labels)
-    marker2 = st.selectbox("Marqueur d’intérêt 2 (ex. épaule)", labels)
+    st.header("2. Sélection des marqueurs")
+
+    with st.expander("ℹ️ Aide à la sélection des bons marqueurs", expanded=True):
+        st.markdown("""
+        - **Marqueur du talon** : `RHEE` (talon droit) ou `LHEE` (talon gauche)
+        - **Marqueurs d’intérêt** : uniquement ceux contenant **`Angles`**, comme :
+            - `RHipAngles`, `RKneeAngles`, `RPelvisAngles`, `LShoulderAngles`, etc.
+        """)
+
+    heel_marker = st.selectbox("Marqueur du talon", heel_markers)
+    marker1 = st.selectbox("Marqueur d’intérêt 1", angle_markers)
+    marker2 = st.selectbox("Marqueur d’intérêt 2", angle_markers)
 
     def extract_and_normalize_cycles(points, labels, marker_name, valid_cycles):
         idx = labels.index(marker_name)
