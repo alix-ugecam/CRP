@@ -63,7 +63,7 @@ if uploaded_files:
 
     if st.button("Lancer la détection + extraction pour les 2 marqueurs"):
         try:
-            # --- Détection des cycles ---
+            # Détection des cycles
             idx_heel = labels.index(heel_marker)
             z_heel = points[2, idx_heel, :]
             inverted_z = -z_heel
@@ -124,7 +124,7 @@ if uploaded_files:
             else:
                 st.warning(f"Aucun cycle valide pour {marker2} après nettoyage.")
 
-            # --- VITESSE ANGULAIRE ---
+            # Vitesse angulaire
             if marker1_cycles.size > 0:
                 marker1_velocity = np.gradient(marker1_cycles, axis=1)
                 mean_marker1_velocity = np.mean(marker1_velocity, axis=0)
@@ -209,7 +209,7 @@ if uploaded_files:
                 ax_angle2.grid(True)
                 st.pyplot(fig_angle2)
 
-            # --- CALCUL DU CRP ---
+            # Calcul CRP
             if marker1_cycles.size > 0 and marker2_cycles.size > 0:
                 crp_rad = marker1_phase_unwrapped - marker2_phase_unwrapped
                 crp_norm = crp_rad / np.pi
@@ -238,9 +238,10 @@ if uploaded_files:
                 st.write(f"**Écart-type** : {crp_std:.3f}")
                 st.write(f"**CRP minimum** : {crp_min:.3f} à {crp_min_pos} % du cycle")
                 st.write(f"**CRP maximum** : {crp_max:.3f} à {crp_max_pos} % du cycle")
---- INTERPRÉTATION ---
-                with st.expander("**🧠 Interprétation des résultats CRP**", expanded = False):
-                    st.markdown("""
+
+            # Interprétation
+            with st.expander("**🧠 Interprétation des résultats CRP**", expanded=False):
+                st.markdown("""
                 Le **CRP (Continuous Relative Phase)** permet d’évaluer la **coordination dynamique** entre deux segments corporels (par exemple, une hanche et une épaule) pendant le cycle de marche. Il est calculé à partir de la **différence entre leurs angles de phase**.
 
                 #### **Comment interpréter les valeurs du CRP ?**
@@ -248,7 +249,7 @@ if uploaded_files:
                 - **Valeurs proches de ±1** → les segments sont **en opposition de phase** : ils bougent **en décalage** (l’un est en avance ou en retard par rapport à l’autre).
                 - **Valeurs positives CRP > 0** : le **premier segment/marqueur** (sélectionné en premier dans l’appli) est **en avance**.
                 - **Valeurs négatives CRP < 0** : le **premier segment/marqueur** est **en retard**.
-                            
+
                 #### **Forme de la courbe CRP :**
                 - Une **oscillation régulière** → coordination **stable et cyclique**.
                 - Une courbe **très variable, plate ou inconstante** → coordination **instable, adaptative ou perturbée/atypique**.
@@ -260,6 +261,5 @@ if uploaded_files:
 
                 Toujours interpréter les résultats **en gardant cela en tête** !
                 """)
-
         except Exception as e:
             st.error(f"Erreur pendant l'analyse : {e}")
