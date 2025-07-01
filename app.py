@@ -38,8 +38,6 @@ if uploaded_files:
     st.header("2. Sélection des marqueurs")
     st.write("Labels disponibles :", labels)
 
-    st.header("2. Sélection des marqueurs")
-
     with st.expander("ℹ️ Aide à la sélection des bons marqueurs", expanded=True):
         st.markdown("""
         - **Marqueur du talon** : `RHEE` (talon droit) ou `LHEE` (talon gauche)
