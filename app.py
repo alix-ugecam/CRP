@@ -23,6 +23,9 @@ if uploaded_files:
 
     c3d = ezc3d.c3d(tmp_path)
     labels = c3d['parameters']['POINT']['LABELS']['value']
+    # Filtrage des marqueurs utiles
+    heel_markers = [label for label in labels if label in ["RHEE", "LHEE"]]
+    angle_markers = [label for label in labels if "Angles" in label]
     freq = c3d['header']['points']['frame_rate']
     first_frame = c3d['header']['points']['first_frame']
     points = c3d['data']['points']
